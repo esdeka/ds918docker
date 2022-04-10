@@ -3,7 +3,7 @@ services:
 
   archisteamfarm:
     image: justarchi/archisteamfarm:latest
-    container_name: asf
+    container_name: ASF
     volumes:
       - /volume1/docker/asf/config/Nlog.config:/app/NLog.config
       - /volume1/docker/asf/config:/app/config
@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
   archisteamfarmsdklog:
     image: justarchi/archisteamfarm:latest
-    container_name: archisteamfarmsdklog
+    container_name: ASFsdklog
     volumes:
       - /volume1/docker/archisteamfarmsdklog/config/Nlog.config:/app/NLog.config
       - /volume1/docker/archisteamfarmsdklog/config:/app/config
