@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+  archisteamfarm:
+    image: justarchi/archisteamfarm:latest
+    container_name: asf
+    volumes:
+      - /volume1/docker/asf/config/Nlog.config:/app/NLog.config
+      - /volume1/docker/asf/config:/app/config
+      - /volume1/docker/asf/log:/app/log
+    network_mode: "host"
+    restart: unless-stopped
+  archisteamfarmsdklog:
+    image: justarchi/archisteamfarm:latest
+    container_name: archisteamfarmsdklog
+    volumes:
+      - /volume1/docker/archisteamfarmsdklog/config/Nlog.config:/app/NLog.config
+      - /volume1/docker/archisteamfarmsdklog/config:/app/config
+      - /volume1/docker/archisteamfarmsdklog/log:/app/log
+    network_mode: "host"
+    restart: unless-stopped
