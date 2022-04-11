@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+  watchtower:
+    command:
+      - --interval
+      - 86400
+      - --cleanup
+      - --label-enable
+    container_name: watchtower
+    image: containrrr/watchtower:latest
+    labels:
+      com.centurylinklabs.watchtower: true
+      com.centurylinklabs.watchtower.enable: true
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
