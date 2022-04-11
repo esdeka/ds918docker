@@ -1,0 +1,17 @@
+version: "3"
+services:
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    ports:
+      - 8000:8000/tcp
+      - 9000:9000/tcp
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /volume1/docker/portainer:/data
+
+# docker-compose up --detach --build
