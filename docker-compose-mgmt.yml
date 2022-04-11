@@ -3,8 +3,6 @@ services:
 
   watchtower:
     command:
-      - --interval
-      - 86400
       - --cleanup
       - --label-enable
     container_name: watchtower
