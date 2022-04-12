@@ -39,8 +39,6 @@ services:
       - /volume1/PlexMediaServer:/volume1/PlexMediaServer
     ports:
       - 8181:8181
-    links:
-      - plex
     restart: unless-stopped
     
   kitana:
@@ -53,7 +51,5 @@ services:
       - /volume1/docker/kitana/config:/app/data
     ports:
       - 31337:31337
-    links:
-      - plex
     restart: unless-stopped
     
