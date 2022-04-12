@@ -68,3 +68,23 @@ services:
     ports:
       - 8989:8989
     restart: unless-stopped
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1024
+      - PGID=101
+      - TZ=Europe/London
+      - WEBUI_PORT=8080
+      - TZ=Europe/Brussels 
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    volumes:
+      - /volume1/docker/qbittorrent/config:/config
+      - /volume1/Downloads/qbittorrent:/downloads
+    ports:
+      - 8080:8080
+      - 35236:35236
+      - 35236:35236/udp
+    restart: unless-stopped
