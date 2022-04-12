@@ -1,0 +1,17 @@
+version: "3"
+services:
+
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    volumes:
+      - /volume1/docker/adguard/config:/opt/adguardhome/conf
+      - /volume1/docker/adguard/data:/opt/adguardhome/work/data 
+    ports:
+      - 53:53/tcp #DNS
+      - 53:53/udp
+      - 67:67/udp #DHCP
+      - 68:68/tcp
+      - 68:68/udp
+      - 3000:3000 #webadmin
+    restart: always
