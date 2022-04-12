@@ -14,6 +14,8 @@ services:
     devices:
       - /dev/dri/card0:/dev/dri/card0:rwm
       - /dev/dri/renderD128:/dev/dri/renderD128:rwm
+    expose:
+      - 32400/tcp
     labels:
       com.centurylinklabs.watchtower.enable: true
     volumes:
