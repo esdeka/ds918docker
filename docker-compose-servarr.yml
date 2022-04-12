@@ -88,3 +88,23 @@ services:
       - 35236:35236
       - 35236:35236/udp
     restart: unless-stopped
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    environment:
+      - PUID=1024
+      - PGID=101
+      - TZ=Europe/Brussels
+    volumes:
+      - /volume1/docker/prowlarr/config:/config
+    ports:
+      - 9696:9696
+    restart: unless-stopped
+
+  flood:
+    image: jesec/flood
+    container_name: flood
+    ports:
+      - 3000:3000
+    restart: unless-stopped
