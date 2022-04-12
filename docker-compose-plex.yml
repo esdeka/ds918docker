@@ -1,0 +1,56 @@
+version: "3"
+services:
+
+  plex:
+    image: lscr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=297536
+      - PGID=297536
+      - TZ=Europe/Brussels
+      - VERSION=latest
+      - DOCKER_MODS=linuxserver/mods:plex-absolute-hama
+    devices:
+      - /dev/dri/card0:/dev/dri/card0:rwm
+      - /dev/dri/renderD128:/dev/dri/renderD128:rwm
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    volumes:
+      - /volume1/PlexMediaServer/AppData:/config/Library/Application Support
+      - /volume1/PlexMediaServer/AppData/tmp:/tmp
+      - /volume1/PlexMediaServer/AppData/tmp:/transcode
+      - /volume1:/volume1
+    restart: unless-stopped
+
+  tautulli:
+    image: lscr.io/linuxserver/tautulli
+    container_name: tautulli
+    environment:
+      - PUID=297536
+      - PGID=297536
+      - TZ=Europe/Brussels
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    volumes:
+      - /volume1/docker/tautulli/config:/config
+      - /volume1/PlexMediaServer:/volume1/PlexMediaServer
+    ports:
+      - 8181:8181
+    links:
+      - plex
+    restart: unless-stopped
+    
+  kitana:
+    image: pannal/kitana:latest
+    container_name: kitana
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    volumes:
+      - /volume1/docker/kitana/config:/app/data
+    ports:
+      - 31337:31337
+    links:
+      - plex
+    restart: unless-stopped
+    
