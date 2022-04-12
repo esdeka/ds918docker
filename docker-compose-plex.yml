@@ -46,6 +46,7 @@ services:
   kitana:
     image: pannal/kitana:latest
     container_name: kitana
+    command: -B 0.0.0.0:31337 -p /kitana -P
     labels:
       com.centurylinklabs.watchtower.enable: true
     volumes:
