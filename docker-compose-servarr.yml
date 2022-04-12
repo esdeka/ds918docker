@@ -113,8 +113,9 @@ services:
       - 13000:3000
     restart: unless-stopped
     volumes:
-      - /volume1/docker/flood/data:/data
-      
+      - /volume1/Downloads/qbittorrent:/downloads
+      - /volume1/docker/flood/config:/config
+
   overseerr:
     image: lscr.io/linuxserver/overseerr
     container_name: overseerr
