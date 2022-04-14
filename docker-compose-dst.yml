@@ -4,6 +4,8 @@ services:
   dontstarvetogether:
     container_name: DontStarve-Together
     image: jamesits/dst-server:latest
+    environment:
+      - TZ=Europe/Brussels
     restart: "on-failure:5"
     ports:
       - "10999-11000:10999-11000/udp"

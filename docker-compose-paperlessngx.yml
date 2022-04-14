@@ -40,6 +40,7 @@ services:
     volumes:
       - /volume1/docker/paperlessng/pgdata:/var/lib/postgresql/data
     environment:
+      TZ: Europe/Brussels
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
       POSTGRES_PASSWORD: paperless
@@ -63,6 +64,7 @@ services:
       - /volume1/docker/paperlessng/export:/usr/src/paperless/export
       - /volume1/docker/paperlessng/consume:/usr/src/paperless/consume
     environment:
+      TZ: Europe/Brussels
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
 # The UID and GID of the user used to run paperless in the container. Set this
