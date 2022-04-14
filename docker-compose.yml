@@ -16,4 +16,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /volume1/docker/portainer:/data
 
-# docker-compose up --detach --build
+# ~/backupdock$ docker-compose up --detach --build
