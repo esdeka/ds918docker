@@ -4,6 +4,7 @@ services:
   esdeka-gameserverl4d2:
     container_name: L4D2
     environment:
+      - TZ=Europe/Brussels
       - SRCDS_PORT=27015
       - SRCDS_SRV_DIR=/home/steam/left4dead2
       - SRCDS_APP_ID=222860

@@ -6,6 +6,8 @@ services:
       - --cleanup
       - --label-enable
     container_name: watchtower
+    environment:
+      - TZ=Europe/Brussels
     image: containrrr/watchtower:latest
     labels:
       com.centurylinklabs.watchtower: true

@@ -4,6 +4,8 @@ services:
   portainer:
     container_name: portainer
     image: portainer/portainer-ce:latest
+    environment:
+      - TZ=Europe/Brussels
     labels:
       com.centurylinklabs.watchtower.enable: true
     ports:
