@@ -15,3 +15,5 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+# docker run --rm --pull=always --label com.centurylinklabs.watchtower.enable=true -v /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --run-once --cleanup --label-enable
