@@ -23,7 +23,7 @@ services:
       - /volume1/PlexMediaServer/AppData/tmp:/tmp
       - /volume1/PlexMediaServer/AppData/tmp:/transcode
       - /volume1:/volume1
-    restart: unless-stopped
+    restart: always
 
   tautulli:
     image: lscr.io/linuxserver/tautulli
@@ -45,6 +45,8 @@ services:
     image: pannal/kitana:latest
     container_name: kitana
     command: -B 0.0.0.0:31337 -p /kitana -P
+    environment:
+      - TZ=Europe/Brussels
     labels:
       com.centurylinklabs.watchtower.enable: true
     volumes:
@@ -53,3 +55,9 @@ services:
       - 31337:31337
     restart: unless-stopped
     
+  # plextraktsync:
+  #   environment:
+  #     - TZ=Europe/Brussels
+  #   image: ghcr.io/taxel/plextraktsync
+  #   volumes:
+  #     - /volume1/docker/plextraktsync/config:/app/config
