@@ -1,17 +1,59 @@
-version: "3"
+# version: "2"
 services:
 
   adguardhome:
     image: adguard/adguardhome
     container_name: adguardhome
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    restart: always
     volumes:
       - /volume1/docker/adguard/config:/opt/adguardhome/conf
       - /volume1/docker/adguard/data:/opt/adguardhome/work/data 
-    ports:
-      - 53:53/tcp #DNS
-      - 53:53/udp
-      - 67:67/udp #DHCP
-      - 68:68/tcp
-      - 68:68/udp
-      - 3000:3000 #webadmin
-    restart: always
+    network_mode: host
+    # ports:
+    #   - 53:53/tcp #DNS
+    #   - 53:53/udp
+    #   - 67:67/udp #DHCP
+    #   - 3000:3000 #webadmin
+#     networks:
+#       adguardvlan:
+#         ipv4_address: 10.10.10.199
+#       internalbr:
+#         ipv4_address: 10.123.0.2
+        
+# #     docker network create -d macvlan --subnet=192.168.178.0/24 --ip-range=192.168.178.7/32 --gateway=192.168.178.1 -o parent=eth0 adguard_network
+
+# networks:
+#   adguardvlan:
+#     driver: macvlan
+#     driver_opts:
+#       parent: ovs_eth0
+#     ipam:
+#       config:
+#         - subnet: "10.10.10.0/24"
+#           gateway: "10.10.10.1"
+#           ip_range: "10.10.10.192/28"
+
+#   internalbr:
+#     driver: bridge
+#     ipam:
+#       config:
+#         - subnet: 10.123.0.0/24
+# 
+# https://www.reddit.com/r/synology/comments/pvterq/help_setting_up_adguard_home_please/
+# https://blog-rpic-de.translate.goog/adguardhome-als-docker-container-auf-dem-synology-nas/?_x_tr_sl=de&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc
+# https://dev.to/fredlab/make-docker-containers-available-both-on-your-local-network-with-macvlan-and-on-the-web-with-traefik-2hj1
+# https://github.com/sarunas-zilinskas/docker-compose-macvlan/blob/master/docker-compose.yml
+
+# docker macvlan no route to host
+# https://stackoverflow.com/questions/63203538/docker-macvlan-no-route-to-host-container
+# https://sreeninet.wordpress.com/2016/05/29/docker-macvlan-and-ipvlan-network-plugins/
+# https://forums.docker.com/t/host-and-containers-cannot-communicate-macvlan/112968/4
+# https://blog.oddbit.com/post/2018-03-12-using-docker-macvlan-networks/
+# https://github.com/larsks/blog.oddbit.com/issues/3#issuecomment-1029590513
+# https://stackoverflow.com/questions/49600665/docker-macvlan-network-inside-container-is-not-reaching-to-its-own-host/67835834#67835834
+# https://stackoverflow.com/questions/42083546/docker-macvlan-network-unable-to-access-internet
+# 
+# https://www.wundertech.net/how-to-install-adguard-home-on-a-synology-nas/
+# https://www.reddit.com/r/synology/comments/pvterq/help_setting_up_adguard_home_please/
