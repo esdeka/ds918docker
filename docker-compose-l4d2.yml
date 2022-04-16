@@ -17,14 +17,7 @@ services:
       - COLLECTIONS=2787108777 2787147130
       - gid=100
       - uid=1026
-    expose:
-      - 27005/tcp
-      - 27005/udp
-      - 27015/tcp
-      - 27015/udp
-      - 27020/tcp
-      - 27020/udp
-      - 51840/tcp
+    network_mode: host
     image: esdeka/gameserverl4d2:latest
     ports:
       - 27005:27005
