@@ -48,3 +48,16 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     labels:
       com.centurylinklabs.watchtower.enable: true
+
+  glances:
+    image: 'nicolargo/glances:latest-full'
+    restart: unless-stopped
+    ports:
+        - '61208-61209:61208-61209'
+    environment:
+        - GLANCES_OPT=-w
+    volumes:
+        - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    pid: host
+    labels:
+      com.centurylinklabs.watchtower.enable: true
