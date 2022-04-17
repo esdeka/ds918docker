@@ -51,6 +51,7 @@ services:
 
   glances:
     image: 'nicolargo/glances:latest-full'
+    container_name: glances
     restart: unless-stopped
     ports:
         - '61208-61209:61208-61209'
