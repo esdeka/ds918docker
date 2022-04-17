@@ -62,3 +62,16 @@ services:
     pid: host
     labels:
       com.centurylinklabs.watchtower.enable: true
+
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    restart: unless-stopped
+    ports:
+        - '19999:19999'
+    volumes:
+        - '/proc:/host/proc:ro'
+        - '/sys:/host/sys:ro'
+        - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    environment:
+        - PGID=0
