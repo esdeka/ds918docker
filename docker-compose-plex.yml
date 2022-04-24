@@ -44,7 +44,7 @@ services:
   kitana:
     image: pannal/kitana:latest
     container_name: kitana
-    command: -B 0.0.0.0:31337 -p /kitana -P
+    command: --bind 0.0.0.0:31337 --prefix /kitana --behind-proxy --timeout 15
     environment:
       - TZ=Europe/Brussels
     labels:
