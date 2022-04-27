@@ -91,5 +91,5 @@ services:
       PAPERLESS_OCR_LANGUAGE: nld
 
       PAPERLESS_FILENAME_FORMAT: "{correspondent}/{document_type}/{created_year}-{created_month}-{created_day} - {title} [{correspondent}][{document_type}][{tag_list}]"
-      PAPERLESS_ENABLE_UPDATE_CHECK: true
+      PAPERLESS_ENABLE_UPDATE_CHECK: "true"
 
