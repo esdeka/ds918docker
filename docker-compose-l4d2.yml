@@ -1,33 +1,36 @@
 version: "3"
 services:
 
-  esdeka-gameserverl4d2:
-    container_name: L4D2
+  L4D2_UNI:
+    container_name: L4D2_UNI
     environment:
       - TZ=Europe/Brussels
-      - SRCDS_PORT=27015
-      - SRCDS_SRV_DIR=/home/steam/left4dead2
-      - SRCDS_APP_ID=222860
-      - SOURCEMOD_VERSION_MAJOR=1.11
-      - SOURCEMOD_VERSION_MINOR=0
-      - SOURCEMOD_BUILD=6863
-      - METAMOD_VERSION_MAJOR=1.12
-      - METAMOD_VERSION_MINOR=0
-      - METAMOD_BUILD=1157
       - COLLECTIONS=2787108777 2787147130
+      - SERVER_NAME=Uni
       - gid=100
       - uid=1026
+      - SRCDS_PORT=27015
     network_mode: host
     image: esdeka/gameserverl4d2:latest
-    ports:
-      - 27005:27005
-      - 27005:27005/udp
-      - 27015:27015
-      - 27015:27015/udp
-      - 27020:27020
-      - 51840:51840
     restart: unless-stopped
     volumes:
       - /volume1/docker/gameserverl4d2:/home/steam/left4dead2:rw
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+  L4D2_MARI:
+    container_name: L4D2_MARI
+    environment:
+      - TZ=Europe/Brussels
+      - COLLECTIONS=2787147130
+      - SERVER_NAME=Mari
+      - gid=100
+      - uid=1026
+      - SRCDS_PORT=27016
+    network_mode: host
+    image: esdeka/gameserverl4d2:latest
+    restart: unless-stopped
+    volumes:
+      - /volume1/docker/l4d2_mari:/home/steam/left4dead2:rw
     stdin_open: true # docker run -i
     tty: true        # docker run -t
