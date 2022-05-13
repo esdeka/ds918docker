@@ -6,7 +6,7 @@ services:
     environment:
       - TZ=Europe/Brussels
       - COLLECTIONS=2787108777 2787147130
-      - SERVER_NAME=Uni
+      - SERVER_NAME=Uni's server (scrubs beware)
       - gid=100
       - uid=1026
       - SRCDS_PORT=27015
@@ -22,8 +22,8 @@ services:
     container_name: L4D2_MARI
     environment:
       - TZ=Europe/Brussels
-      - COLLECTIONS=2787147130
-      - SERVER_NAME=Mari
+      - COLLECTIONS=2787147130 2805134338
+      - SERVER_NAME=mari's server <3
       - gid=100
       - uid=1026
       - SRCDS_PORT=27016
