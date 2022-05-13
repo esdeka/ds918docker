@@ -11,7 +11,7 @@ services:
       com.centurylinklabs.watchtower.enable: true
     volumes:
       - /volume1/docker/adguard/config:/opt/adguardhome/conf
-      - /volume1/docker/adguard/data:/opt/adguardhome/work/data 
+      - /volume1/docker/adguard/work:/opt/adguardhome/work 
     network_mode: host
     # ports:
     #   - 53:53/tcp #DNS
