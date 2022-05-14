@@ -102,21 +102,6 @@ services:
       - 9696:9696
     restart: unless-stopped
 
-  flood:
-    image: jesec/flood
-    command: --port 13000 --allowedpath /downloads
-    container_name: flood
-    environment:
-      - PUID=1024
-      - PGID=101
-      - TZ=Europe/Brussels
-    ports:
-      - 13000:13000
-    restart: unless-stopped
-    volumes:
-      - /volume1/Downloads/qbittorrent:/downloads
-      - /volume1/docker/flood/config:/config
-
   overseerr:
     image: lscr.io/linuxserver/overseerr
     container_name: overseerr
