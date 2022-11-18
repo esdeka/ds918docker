@@ -5,7 +5,7 @@ services:
   #   container_name: L4D2_UNI
   #   environment:
   #     - TZ=Europe/Brussels
-  #     - COLLECTIONS=2787108777 2787147130
+  #     - COLLECTIONS=2787147130 2787108777
   #     - SERVER_NAME=Uni's server (scrubs beware)
   #     - gid=100
   #     - uid=1026
