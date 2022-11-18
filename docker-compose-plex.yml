@@ -41,19 +41,19 @@ services:
       - 8181:8181
     restart: unless-stopped
     
-  kitana:
-    image: pannal/kitana:latest
-    container_name: kitana
-    command: --bind 0.0.0.0:31337 --prefix /kitana --behind-proxy --timeout 15
-    environment:
-      - TZ=Europe/Brussels
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-    volumes:
-      - /volume1/docker/kitana/config:/app/data
-    ports:
-      - 31337:31337
-    restart: unless-stopped
+  # kitana:
+  #   image: pannal/kitana:latest
+  #   container_name: kitana
+  #   command: --bind 0.0.0.0:31337 --prefix /kitana --behind-proxy --timeout 15
+  #   environment:
+  #     - TZ=Europe/Brussels
+  #   labels:
+  #     com.centurylinklabs.watchtower.enable: true
+  #   volumes:
+  #     - /volume1/docker/kitana/config:/app/data
+  #   ports:
+  #     - 31337:31337
+  #   restart: unless-stopped
     
   # plextraktsync:
   #   environment:

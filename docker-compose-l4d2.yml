@@ -1,22 +1,22 @@
 version: "3"
 services:
 
-  L4D2_UNI:
-    container_name: L4D2_UNI
-    environment:
-      - TZ=Europe/Brussels
-      - COLLECTIONS=2787108777 2787147130
-      - SERVER_NAME=Uni's server (scrubs beware)
-      - gid=100
-      - uid=1026
-      - SRCDS_PORT=27015
-    network_mode: host
-    image: esdeka/gameserverl4d2:latest
-    restart: unless-stopped
-    volumes:
-      - /volume1/docker/gameserverl4d2:/home/steam/left4dead2:rw
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
+  # L4D2_UNI:
+  #   container_name: L4D2_UNI
+  #   environment:
+  #     - TZ=Europe/Brussels
+  #     - COLLECTIONS=2787108777 2787147130
+  #     - SERVER_NAME=Uni's server (scrubs beware)
+  #     - gid=100
+  #     - uid=1026
+  #     - SRCDS_PORT=27015
+  #   network_mode: host
+  #   image: esdeka/gameserverl4d2:latest
+  #   restart: unless-stopped
+  #   volumes:
+  #     - /volume1/docker/gameserverl4d2:/home/steam/left4dead2:rw
+  #   stdin_open: true # docker run -i
+  #   tty: true        # docker run -t
 
   L4D2_MARI:
     container_name: L4D2_MARI
