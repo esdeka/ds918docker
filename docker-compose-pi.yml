@@ -1,0 +1,75 @@
+services:
+  adguard:
+    container_name: adguard
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    image: adguard/adguardhome
+    volumes:
+      - /home/pi/adguard_work:/opt/adguardhome/work
+      - /home/pi/adguard_conf:/opt/adguardhome/conf
+    restart: unless-stopped
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    network_mode: host
+
+  adguardhome-sync:
+    image: ghcr.io/bakito/adguardhome-sync
+    container_name: adguardhome-sync
+    command: run
+    environment:
+      - ORIGIN_URL=http://10.10.10.10:3000
+      - ORIGIN_USERNAME=sam
+      - ORIGIN_PASSWORD=$PASSWORD
+      - REPLICA_URL=http://10.10.10.11:3000
+      - REPLICA_USERNAME=sam
+      - REPLICA_PASSWORD=$PASSWORD
+      - REPLICA_AUTOSETUP=true # if true, AdGuardHome is automatically initialized.
+      - REPLICA1_INTERFACENAME=enxb827ebc9c8d3 # use custom dhcp interface name
+      # - REPLICA1_URL=http://192.168.1.4
+      # - REPLICA1_USERNAME=username
+      # - REPLICA1_PASSWORD=password
+      # - REPLICA1_APIPATH=/some/path/control
+      # - REPLICA1_AUTOSETUP=true # if true, AdGuardHome is automatically initialized.
+      - CRON=*/10 * * * * # run every 10 minutes
+      - RUNONSTART=true
+      # Configure sync features; by default all features are enabled.
+      # - FEATURES_GENERALSETTINGS=true
+      - FEATURES_QUERYLOGCONFIG=false
+      # - FEATURES_STATSCONFIG=true
+      # - FEATURES_CLIENTSETTINGS=true
+      # - FEATURES_SERVICES=true
+      # - FEATURES_FILTERS=true
+      - FEATURES_DHCP_SERVERCONFIG=false
+      # - FEATURES_DHCP_STATICLEASES=true
+      # - FEATURES_DNS_SERVERCONFIG=true
+      # - FEATURES_DNS_ACCESSLISTS=true
+      # - FEATURES_DNS_REWRITES=true
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+    
+    #AdguardHome.yaml
+    #dns:
+    #  querylog_file_enabled: false
+    #dhcp:
+    #  dhcpv4:
+    #    options: 
+    #    - '6 ips 10.10.10.11,10.10.10.10'
+
+    
+  watchtower:
+    command:
+      - --cleanup
+      - --label-enable
+    container_name: watchtower
+    environment:
+      - TZ=Europe/Brussels
+    image: containrrr/watchtower:latest
+    labels:
+      com.centurylinklabs.watchtower: true
+      com.centurylinklabs.watchtower.enable: true
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
