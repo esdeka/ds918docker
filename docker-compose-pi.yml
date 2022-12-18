@@ -83,7 +83,7 @@ services:
       # Optional:
       - PASSWORD=$PASSWORD
       - WG_PORT=51822
-      # - WG_DEFAULT_ADDRESS=10.8.0.x
+      - WG_DEFAULT_ADDRESS=10.9.0.x
       - WG_DEFAULT_DNS=10.10.10.11
       # - WG_MTU=1420
       # - WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24
@@ -93,8 +93,8 @@ services:
     volumes:
       - ~/.wg-easy:/etc/wireguard
     ports:
-      - "51820:51820/udp"
-      - "51821:51821/tcp"
+      - "51822:51820/udp"
+      - "51823:51821/tcp"
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
