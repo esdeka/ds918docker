@@ -82,7 +82,7 @@ services:
 
       # Optional:
       - PASSWORD=$PASSWORD
-       - WG_PORT=51822
+      - WG_PORT=51822
       # - WG_DEFAULT_ADDRESS=10.8.0.x
       - WG_DEFAULT_DNS=10.10.10.11
       # - WG_MTU=1420
@@ -90,6 +90,8 @@ services:
       
     image: weejewel/wg-easy
     container_name: wg-easy
+    volumes:
+      - ~/.wg-easy:/etc/wireguard
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
